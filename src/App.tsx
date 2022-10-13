@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Login from "./pages/Login";
@@ -8,6 +8,13 @@ import ChattingRoom from "./pages/ChattingRoom";
 import MyPage from "./pages/MyPage";
 
 function App() {
+  function setScreenSize() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }
+  useEffect(() => {
+    setScreenSize();
+  });
   return (
     <Routes>
       <Route index element={<Login />} /> {/* Login */}

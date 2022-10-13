@@ -3,7 +3,7 @@ const palette = {
   mint: '#22C8A8',
   white: '#FFF',
   gray: '#939393',
-  black: '#000',
+  black: '#121212',
 }
 
 const theme = {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { login } from '../apis/userApi'
+import { LoginData } from '../types/auth'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as Reservation } from '../assets/logo.svg'
@@ -30,23 +31,34 @@ const FormWrapper = styled.div`
   margin-top: 40px;
   box-sizing: border-box;
 `
-
-const Input = styled.input`
+const IdInput = styled.input`
   margin: 0;
   padding: 0 8px;
   width: 100%;
   height: 48px;
   border: 1px solid ${({ theme }) => theme.palette.gray};
-  border-radius: 4px;
+  border-bottom: transparent;
+  border-radius: 4px 4px 0 0;
   box-sizing: border-box;
   font-size: 16px;
+  outline: none;
+`
+const PasswordInput = styled.input`
+  margin: 0;
+  padding: 0 8px;
+  width: 100%;
+  height: 48px;
+  border: 1px solid ${({ theme }) => theme.palette.gray};
+  border-radius: 0 0 4px 4px;
+  box-sizing: border-box;
+  font-size: 16px;
+  outline: none;
 `
 
 const ButtonWrapper = styled.div`
   margin: 0 auto;
   margin-top: 20px;
 `
-
 const Button = styled.button`
   background-color: ${({ theme }) => theme.palette.mint};
   background-opacity: 0.5;
@@ -59,21 +71,26 @@ const Button = styled.button`
   border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
-  &:active {
+  &:hover {
     opacity: 0.7;
   }
 `
 
-const Login: React.FC = (props) => {
+const Login: React.FC = () => {
   const navigate = useNavigate()
   const mutation = useMutation((username: string) => login({username}))
   const [userId, setUserId] = useState("")
-  const [password, setPassword] = useState("")
+  const [password] = useState("")
   const MAX_LENGTH = 30;
 
   const UserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
     setUserId(e.target.value)
   }
+  const PasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+  }
+
   const handleLogin = () => {
     mutation.mutate(userId, {
       onSuccess: (data) => {
@@ -91,17 +108,18 @@ const Login: React.FC = (props) => {
           <Reservation width="100" height="100" />
         </LogoWrapper>
         <FormWrapper>
-          <Input
+          <IdInput
             type="text"
             value={userId}
             placeholder='이메일'
             maxLength={MAX_LENGTH}
             onChange={UserIdChange}
           />
-          <Input 
+          <PasswordInput 
             type="password"
             value={password}
             placeholder='비밀번호'
+            onChange={PasswordChange}
           />
         </FormWrapper>
         <ButtonWrapper>
