@@ -11,12 +11,12 @@ const Base = styled.div`
   height: 100vh;
   box-sizing: border-box;
   whiteSpace: nowrap;
+  padding-top: 150px;
 `
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: calc(100% - 400px);
 `
 
 const LogoWrapper = styled.div`
@@ -43,6 +43,7 @@ const Input = styled.input`
 `
 
 const ButtonWrapper = styled.div`
+  margin: 0 auto;
   margin-top: 20px;
 `
 
@@ -52,8 +53,10 @@ const Button = styled.button`
   margin: 0;
   padding: 0;
   border: none;
-  width: 100%;
+  width: 260px;
   height: 48px;
+  color: ${({ theme }) => theme.palette.cream};
+  border-radius: 4px;
   font-size: 16px;
   font-weight: bold;
   &:active {
@@ -61,12 +64,12 @@ const Button = styled.button`
   }
 `
 
-const Login: React.FC = () => {
+const Login: React.FC = (props) => {
   const navigate = useNavigate()
   const mutation = useMutation((username: string) => login({username}))
   const [userId, setUserId] = useState("")
   const [password, setPassword] = useState("")
-  const MAX_LENGTH = 20;
+  const MAX_LENGTH = 30;
 
   const UserIdChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value)
