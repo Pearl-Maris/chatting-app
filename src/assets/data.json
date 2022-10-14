@@ -1,0 +1,34 @@
+{
+  "users" : [
+    {
+      "id" : 1,
+      "username" : "홍서영",
+      "userId": "seoyoung",
+      "eamil" : "seo@example.com",
+      "myQuote" : "나랏말쌈이 뒹국에 달아",
+      "myFriendsId" : [
+        2, 3
+      ]
+    },
+    {
+      "id" : 2,
+      "username" : "안유진",
+      "userId": "yujin",
+      "eamil" : "yujin@example.com",
+      "myQuote" : "국가는 평생교육을 진흥하여야 한다",
+      "myFriendsId" : [
+        1, 3
+      ]
+    },
+    {
+      "id" : 3,
+      "username" : "가을",
+      "userId": "gaeul",
+      "eamil" : "gaeul@example.com",
+      "myQuote" : "대통령은 국가의 원수이며, 외국에 대하여 국가를 대표한다",
+      "myFriendsId" : [
+        1, 2
+      ]
+    }
+  ]
+}
