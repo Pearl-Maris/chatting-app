@@ -17,3 +17,9 @@
 - react-icon
 - sqlite3
 - sequelize
+
+### figma
+
+[채팅앱 디자인 기획](https://www.figma.com/file/Q5s4DEwGtQiEdnVtCDjrfr/chatting-app-Design?node-id=17%3A11460)
+
+### 배포사이트
