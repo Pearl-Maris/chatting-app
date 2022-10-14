@@ -9,6 +9,7 @@ const Base = styled.div`
   margin-bottom: 10px;
   border-bottom: 1px solid ${({ theme }) => theme.palette.mint};
   display: flex;
+  cursor: pointer;
 `
 
 const UserIamgeWrapper = styled.div`
@@ -29,6 +30,7 @@ const ProfileTextWrapper = styled.div`
 const ProfileText = styled.div`
   display: flex;
   align-items: center;
+  font-size: 14px;
   & b {
     font-weight: bold;
     cursor: pointer;
@@ -39,8 +41,9 @@ const Item = styled.button`
   color: ${({ theme }) => theme.palette.mint};
   background-color: transparent;
   border: none;
-  font-size: 1.2em;
+  font-size: 1em;
   padding: 4px;
+  cursor: pointer;
 `
 
 const UserProflie: React.FC = () => {

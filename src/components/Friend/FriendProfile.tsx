@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const Base = styled.div`
   display: flex;
   padding: 10px 0;
+  cursor: pointer;
 `
 
 const UserIamgeWrapper = styled.div`
@@ -30,29 +31,34 @@ const ProfileText = styled.div`
     padding-top: 4px;
   }
   p {
-    font-size: 12px;
+    font-size: 10px;
   }
   & b {
     font-weight: bold;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
   };
 `
 
-const FriendProfile: React.FC = () => {
+interface Props {
+  username: string;
+  thumnailImg?: string;
+}
+
+const FriendProfile: React.FC<Props> = ({username, thumnailImg}) => {
   return (
     <Base>
       <UserIamgeWrapper>
         <img
-          src="/assets/images/profile.png"
+          src={thumnailImg || "/logo.png"}
           alt="profile_image"
         />
       </UserIamgeWrapper>
       <ProfileTextWrapper>
         <ProfileText>
-          <p>
-            <b>친구프로필</b>
-          </p>
+          {<p>
+            <b>{username}</b>
+          </p>}
         </ProfileText>
         <ProfileText>
           <p>

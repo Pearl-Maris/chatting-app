@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
 import SideBar from '../components/SideBar'
 import HeaderNav from '../components/HeaderNav'
 import FriendProfile from '../components/Friend/FriendProfile'
