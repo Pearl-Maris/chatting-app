@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 
 const Base = styled.div`
   display: flex;
@@ -43,12 +43,14 @@ const ProfileText = styled.div`
 interface Props {
   username: string;
   thumnailImg?: string;
+  onClick: () => void;
 }
 
-const FriendProfile: React.FC<Props> = ({username, thumnailImg}) => {
+const FriendProfile: React.FC<Props> = ({username, thumnailImg, onClick}) => {
+
   return (
     <Base>
-      <UserIamgeWrapper>
+      <UserIamgeWrapper onClick={onClick}>
         <img
           src={thumnailImg || "/logo.png"}
           alt="profile_image"
@@ -56,9 +58,9 @@ const FriendProfile: React.FC<Props> = ({username, thumnailImg}) => {
       </UserIamgeWrapper>
       <ProfileTextWrapper>
         <ProfileText>
-          {<p>
+          <p>
             <b>{username}</b>
-          </p>}
+          </p>
         </ProfileText>
         <ProfileText>
           <p>

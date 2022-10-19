@@ -2,12 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { UserResponse } from '../../types/user'
 
-// const Base = styled.div`
-//   width: 100%;
-//   height: 100vh;
-//   background-color: ${({ theme }) => theme.palette.cream};
-// `
-
 const ChatWrapper = styled.div`
   display: inline-block;
   padding: 8px 10px;

@@ -4,6 +4,7 @@ import SideBar from '../components/SideBar'
 import HeaderNav from '../components/HeaderNav'
 import FriendProfile from '../components/Friend/FriendProfile'
 import UserProflie from '../components/proflie/UserProflie'
+import { useQuery } from 'react-query'
 
 const Base = styled.div`
   background-color: ${({ theme }) => theme.palette.white};
@@ -20,14 +21,29 @@ const ProfileArea = styled.div`
 `
 
 const Friend: React.FC = () => {
+
+  const { data: profileData } = useQuery('fetchMyProfile')
+  const { data: userData } = useQuery('fetchUserList')
+
   return (
     <Base>
       <SideBar />
       <Container>
         <HeaderNav title='친구'/>
         <ProfileArea>
-          <UserProflie />
-          <FriendProfile />
+          {profileData && <UserProflie username={profileData.data.username} />}
+          {
+            userData.data.rows.map(row => (
+              <div>
+                <FriendProfile
+                  key={row.id}
+                  thumnailImg={row.thumnailImg}
+                  username={row.username}
+                  onClick={() => handleChatRoomCreate(row.id)}
+                />
+              </div>
+            ))
+          }
         </ProfileArea>
       </Container>
     </Base>
