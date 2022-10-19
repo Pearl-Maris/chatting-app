@@ -1,5 +1,7 @@
 import express, { Application } from 'express'
 import session from 'express-session'
+import cors from 'cors'
+
 import sequelize from './sequelize'
 import routes from './routes'
 
@@ -16,6 +18,11 @@ const sessionMiddleware = session({
 })
 
 app.use(sessionMiddleware)
+app.use(cors({
+  origin: 'https://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
