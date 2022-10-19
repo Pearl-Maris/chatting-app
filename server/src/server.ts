@@ -4,6 +4,7 @@ import cors from 'cors'
 
 import sequelize from './sequelize'
 import routes from './routes'
+import socket from './socket'
 
 const FileStore = require('session-file-store')(session)
 
@@ -30,6 +31,8 @@ sequelize.sync({ force: true })
 
 app.use('/', routes)
 
-app.listen( 8000, () => {
+const server = app.listen( 8000, () => {
   console.log('start')
 })
+
+socket(server, app, sessionMiddleware)
