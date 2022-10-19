@@ -1,9 +1,21 @@
 import express, { Application } from 'express'
+import session from 'express-session'
 import sequelize from './sequelize'
 import routes from './routes'
 
+const FileStore = require('session-file-store')(session)
+
 const app: Application = express()
 
+const sessionMiddleware = session({
+  secret: 'chattingApp',
+  saveUninitialized: true,
+  cookie: { secure: false},
+  resave: false,
+  store: new FileStore()
+})
+
+app.use(sessionMiddleware)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
