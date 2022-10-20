@@ -4,7 +4,12 @@ import SideBar from '../components/SideBar'
 import HeaderNav from '../components/HeaderNav'
 import FriendProfile from '../components/Friend/FriendProfile'
 import UserProflie from '../components/proflie/UserProflie'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery } from 'react-query'
+import { AxiosError, AxiosResponse } from 'axios'
+import { fetchMyProfile, fetchUserList } from '../apis/userApi'
+import { fetchChatRoomList, makeChatRoom, MakeChatRoomRequest } from '../apis/roomApi'
+import { useNavigate } from 'react-router-dom'
+
 
 const Base = styled.div`
   background-color: ${({ theme }) => theme.palette.white};
@@ -21,9 +26,30 @@ const ProfileArea = styled.div`
 `
 
 const Friend: React.FC = () => {
+  
+  const navigate = useNavigate()
 
-  const { data: profileData } = useQuery('fetchMyProfile')
-  const { data: userData } = useQuery('fetchUserList')
+  // get types
+  const { data: profileData } = useQuery<AxiosResponse, AxiosError>('fetchMyProfile', fetchMyProfile)
+  const { data: userData } = useQuery<AxiosResponse, AxiosError>('fetchUserList', fetchUserList)
+
+  // 채팅방 생성 및 이미 생성된 채팅방이 있는지 확인
+  const { data: chatRoomListData } = useQuery<AxiosResponse, AxiosError>('fetchChatRoomList', fetchChatRoomList)
+  const mutation = useMutation("makeChatRoom", (request: MakeChatRoomRequest) => makeChatRoom(request) )
+  const handleChatRoomCreate = (opponentId: string) => {
+    const chatRoom = chatRoomListData?.data.find(chatRoom => chatRoom.opponentId === opponentId)
+    if (chatRoom) {
+      navigate(`/room/${chatRoom.id}`)
+    } else {
+      mutation.mutate({
+        opponentId
+      }, {
+        onSuccess: () => {
+          navigate(`/room/${data.data.id}`)
+        }
+      })
+    }
+  }
 
   return (
     <Base>

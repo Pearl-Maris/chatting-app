@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { login } from '../apis/userApi'
-import { LoginData } from '../types/auth'
+// import { LoginData } from '../types/auth'
 import { useMutation } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as Reservation } from '../assets/logo.svg'
